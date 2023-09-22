@@ -103,7 +103,7 @@ border-color: #17384D;
 border-radius: 30px;
 width: 450px !important;
 }
-[class="block-container css-1y4p8pa ea3mdgi4"] {
+[class="block-container st-emotion-cache-1y4p8pa ea3mdgi4"] {
 background-color: #EEEADD;
 margin-top: 70px;
 opacity: 0.9;
