@@ -19,10 +19,11 @@ class Data:
         df = pd.read_excel(
             f'https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=xlsx',
             sheet_name=self.table,
-            skiprows=[0, 1]
+            header=2
         )
         df.dropna(axis=0, how='all', inplace=True)
         df.dropna(axis=1, how='all', inplace=True)
-        return df[df['Target field'] == column_name].melt()
+        return df[df['DataMart Column'] == column_name]
+
         
 
