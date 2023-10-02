@@ -34,47 +34,43 @@ returning_dictionary = {0: 'information',
                      25: 'information/dim - company/company_code',
                      26: 'information/dim - company/company_name',
                      27: 'information/dim - customer',
-                     28: 'information/dim - customer/row_id',
-                     29: 'information/dim - customer/integration_id',
-                     30: 'information/dim - customer/datasource_id',
-                     31: 'information/dim - customer/customer_subcode',
-                     32: 'information/dim - customer/customer_code',
-                     33: 'information/dim - customer/customer_name',
-                     34: 'information/dim - customer/birthday',
-                     35: 'information/dim - customer/gender',
-                     36: 'information/dim - customer/nationality',
-                     37: 'information/dim - customer/region_id',
-                     38: 'information/dim - customer/contract_number_normal',
-                     39: 'information/dim - customer/contract_number_margin',
-                     40: 'information/dim - customer/create_date',
-                     41: 'information/dim - customer/modify_date',
-                     42: 'information/dim - territory',
-                     43: 'information/dim - territory/row_id',
-                     44: 'information/dim - territory/integration_id',
-                     45: 'information/dim - territory/flex_province',
-                     46: 'information/dim - territory/bravo_province',
-                     47: 'information/dim - territory/district_code',
-                     48: 'information/dim - territory/district_name',
-                     49: 'information/dim - territory/district_en',
-                     50: 'information/dim - territory/province_code',
-                     51: 'information/dim - territory/province_name',
-                     52: 'information/dim - territory/province_en',
-                     53: 'information/dim - vendor',
-                     54: 'information/dim - vendor/row_id',
-                     55: 'information/dim - vendor/integration_id',
-                     56: 'information/dim - vendor/customer_subcode',
-                     57: 'information/dim - vendor/customer_code',
-                     58: 'information/dim - vendor/customer_name',
-                     59: 'information/dim - vendor/birthday',
-                     60: 'information/dim - vendor/gender',
-                     61: 'information/dim - vendor/nationality',
-                     62: 'information/dim - vendor/province',
-                     63: 'information/dim - vendor/contract_number_normal',
-                     64: 'information/dim - vendor/contract_number_margin',
+                     28: 'information/dim - customer/Source ID',
+                     29: 'information/dim - customer/Sub Account',
+                     30: 'information/dim - customer/Customer Code',
+                     31: 'information/dim - customer/Customer Name',
+                     32: 'information/dim - customer/Birthday',
+                     33: 'information/dim - customer/Gender',
+                     34: 'information/dim - customer/Nationality',
+                     35: 'information/dim - customer/Region ID',
+                     36: 'information/dim - customer/#Count Customer',
+                     37: 'information/dim - customer/.Age',
+                     38: 'information/dim - territory',
+                     39: 'information/dim - territory/row_id',
+                     40: 'information/dim - territory/integration_id',
+                     41: 'information/dim - territory/flex_province',
+                     42: 'information/dim - territory/bravo_province',
+                     43: 'information/dim - territory/district_code',
+                     44: 'information/dim - territory/district_name',
+                     45: 'information/dim - territory/district_en',
+                     46: 'information/dim - territory/province_code',
+                     47: 'information/dim - territory/province_name',
+                     48: 'information/dim - territory/province_en',
+                     49: 'information/dim - vendor',
+                     50: 'information/dim - vendor/row_id',
+                     51: 'information/dim - vendor/integration_id',
+                     52: 'information/dim - vendor/customer_subcode',
+                     53: 'information/dim - vendor/customer_code',
+                     54: 'information/dim - vendor/customer_name',
+                     55: 'information/dim - vendor/birthday',
+                     56: 'information/dim - vendor/gender',
+                     57: 'information/dim - vendor/nationality',
+                     58: 'information/dim - vendor/province',
+                     59: 'information/dim - vendor/contract_number_normal',
+                     60: 'information/dim - vendor/contract_number_margin',
                      }
-#
-with open('returning_dictionary.pkl', 'wb') as file:
-    pickle.dump(returning_dictionary, file)
+#st-emotion-cache
+# with open('returning_dictionary.pkl', 'wb') as file:
+#     pickle.dump(returning_dictionary, file)
 
 # with open('returning_dictionary.pkl', 'rb') as file:
 #     returning_dictionary = pickle.load(file)
@@ -87,33 +83,34 @@ with st.spinner('Wait for it...'):
 st.markdown('''
 <style>
 [data-testid="stAppViewContainer"] {
-background-image: url('https://images4.alphacoders.com/104/1047187.jpg');
+background-image: url('https://janegee.com/cdn/shop/articles/janegee-clean-beauty-natural-blog-creating-white-space-2.jpg?v=1578514704');
 background-size: cover;
 background-repeat: no-repeat;
 }
 [data-testid="stSidebar"] {
-background-image: url('https://i.ibb.co/DCb3nvR/crane.jpg');
+background-image: url('https://i.pinimg.com/564x/b3/cd/06/b3cd06d39f7c85313649d605041b4c3d.jpg');
 background-size: cover;
 margin-top: 0px;
 margin-left: 40px;
 opacity: 0.9;
 background-repeat: no-repeat;
 border-style: double;
-border-color: #17384D;
-border-radius: 30px;
-width: 450px !important;
+border-color: #34693a;
+border-radius: 20px;
 }
-[class="block-container st-emotion-cache-1y4p8pa ea3mdgi4"] {
-background-color: #EEEADD;
-margin-top: 70px;
+[class="block-container css-1y4p8pa ea3mdgi4"] {
+background-color: #FFFFFF;
+padding-top: 5px;
+margin-top: 0px;
 opacity: 0.9;
 background-repeat: no-repeat;
 border-style: double;
-border-color: #17384D;
+border-color: #34693a;
 border-radius: 20px;
+line-height: 1.0;
 }
 [data-testid='stHeader'] {
-background-color: #EEEADD;
+background-color: #FFFFFF;
 opacity: 0.0;
 background-repeat: no-repeat;
 }
@@ -124,8 +121,6 @@ background-repeat: no-repeat;
 }
 </style>
 ''', unsafe_allow_html=True)
-
-
 with open('last_search.pkl', 'rb') as file:
     last_search = pickle.load(file)
 df_search = pd.DataFrame(list(returning_dictionary.items()), columns=['index', 'path'])
@@ -136,7 +131,6 @@ if text_search != last_search:
         pickle.dump(text_search, file)
 else:
     t2 = dt.datetime(1993, 4, 16)
-sac.divider(icon='yin-yang', align='center', direction='horizontal', dashed=False, bold=False)
 with st.sidebar:
 
     st.image("logo.png", width=200)
@@ -151,11 +145,11 @@ with st.sidebar:
             sac.TreeItem('Company', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
                                         [returning_dictionary.get(k).split('/')[-1] for k in range(22, 27, 1)]]),
             sac.TreeItem('Customer', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(28, 42, 1)]]),
+                                        [returning_dictionary.get(k).split('/')[-1] for k in range(28, 38, 1)]]),
             sac.TreeItem('Territory', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(43, 53, 1)]]),
+                                        [returning_dictionary.get(k).split('/')[-1] for k in range(39, 49, 1)]]),
             sac.TreeItem('Vendor', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(54, 65, 1)]])
+                                        [returning_dictionary.get(k).split('/')[-1] for k in range(50, 61, 1)]])
         ]),
         sac.TreeItem('Trading', tooltip='item2 tooltip', disabled=True, children=[
             sac.TreeItem('Trading', disabled=True, icon='table'),
@@ -191,8 +185,16 @@ else:
     the_path = text_search
 st.text(the_path.title())
 if len(the_path.split('/')) == 3:
-    st.write(f'''## {the_path.split('/')[-1].title()}''')
-    st.write('### Data Source')
     data.table = the_path.split('/')[1].title()
     df = data.getData(the_path.split('/')[-1])
-    st.dataframe(df.style.hide(axis="index"))
+    st.markdown(f'''## {the_path.split('/')[-1].title()}''')
+    st.markdown('article - ' + str(df['article'].iloc[0].date()))
+    if str(df['Description'].iloc[0]) != 'nan':
+        st.markdown(str(df['Description'].iloc[0]))
+    st.markdown('### Managed by')
+    st.markdown(str(df['Managed by'].iloc[0]))
+    st.markdown('### Data Source')
+    st.markdown(df[['Source', 'Table', 'Field']].style.hide(axis="index").to_html(), unsafe_allow_html=True)
+    if str(df['Formula'].iloc[0]) != 'nan':
+        st.markdown('### Formula')
+        st.markdown(str(df['Formula'].iloc[0]))
