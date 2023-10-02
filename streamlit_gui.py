@@ -188,7 +188,7 @@ if len(the_path.split('/')) == 3:
     data.table = the_path.split('/')[1].title()
     df = data.getData(the_path.split('/')[-1])
     st.markdown(f'''## {the_path.split('/')[-1].title()}''')
-    st.markdown('article - ' + str(df['article'].iloc[0].strftime("%d/%m/%Y")))
+    # st.markdown('article - ' + str(df['article'].iloc[0].strftime("%d/%m/%Y")))
     if str(df['Description'].iloc[0]) != 'nan':
         st.markdown(str(df['Description'].iloc[0]))
     st.markdown('### Managed by')
