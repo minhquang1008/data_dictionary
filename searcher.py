@@ -22,7 +22,7 @@ class Data:
             header=2
         )
         df.dropna(axis=0, how='all', inplace=True)
-        df.dropna(axis=1, how='all', inplace=True)
+        # df.dropna(axis=1, how='all', inplace=True)
         return df[df['DataMart Column'] == column_name]
 
         
