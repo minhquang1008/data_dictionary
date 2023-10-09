@@ -67,35 +67,7 @@ returning_dictionary = {0: 'information',
                      58: 'information/dim - vendor/province',
                      59: 'information/dim - vendor/contract_number_normal',
                      60: 'information/dim - vendor/contract_number_margin',
-                     64: 'Margin',
-                     67: 'Margin/fact - outstanding',
-                     68: 'Margin/fact - outstanding/Source ID',
-                     69: 'Margin/fact - outstanding/Date Key',
-                     70: 'Margin/fact - outstanding/Date Oustanding',
-                     71: 'Margin/fact - outstanding/Customer ID',
-                     72: 'Margin/fact - outstanding/Oustanding Principal',
-                     73: 'Margin/fact - outstanding/Oustanding Remain',
-                     74: 'Margin/fact - outstanding/Oustanding Overdue',
-                     75: 'Margin/fact - outstanding/Oustanding Paid',
-                     76: 'Margin/fact - outstanding/Interest OUT',
-                     77: 'Margin/fact - outstanding/Interest Due',
-                     78: 'Margin/fact - outstanding/Interest Overdue',
-                     79: 'Margin/fact - outstanding/Interest Overdue OUT',
-                     80: 'Margin/fact - outstanding/Interest Paid',
-                     81: 'Margin/fact - outstanding/Date Disbursement',
-                     82: 'Margin/fact - outstanding/Date Start Interest Paid',
-                     83: 'Margin/fact - outstanding/Date First Due',
-                     84: 'Margin/fact - outstanding/Date Last Due',
-                     85: 'Margin/fact - outstanding/Rate Due 1',
-                     86: 'Margin/fact - outstanding/Rate Due 2',
-                     87: 'Margin/fact - outstanding/Rate Overdue',
-                     88: 'Margin/fact - outstanding/Loan Name',
-                     89: 'Margin/fact - outstanding/Branch ID',
-                     90: 'Margin/fact - outstanding/.Interest Outs',
-                     91: 'Margin/fact - outstanding/.Interest Overdue',
-                     92: 'Margin/fact - outstanding/.Outs Overdue',
-                     93: 'Margin/fact - outstanding/.Outs Principal'
-                    }
+                     }
 #st-emotion-cache
 # with open('returning_dictionary.pkl', 'wb') as file:
 #     pickle.dump(returning_dictionary, file)
@@ -183,11 +155,9 @@ with st.sidebar:
             sac.TreeItem('Trading', disabled=True, icon='table'),
             sac.TreeItem('Price Board',  disabled=True, icon='table')
         ]),
-        sac.TreeItem('Margin', tooltip='item3 tooltip', children=[
+        sac.TreeItem('Margin', tooltip='item3 tooltip', disabled=True, children=[
             sac.TreeItem('Room', disabled=True, icon='table'),
-            sac.TreeItem('Margin Detail',  disabled=True, icon='table'),
-            sac.TreeItem('Outstanding', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(68, 94, 1)]])
+            sac.TreeItem('Margin Detail',  disabled=True, icon='table')
         ]),
     ],  label='Table',
         index=0,
@@ -227,4 +197,3 @@ if len(the_path.split('/')) == 3:
     if str(df['Formula'].iloc[0]) != 'nan':
         st.write('### Formula')
         st.write(str(df['Formula'].iloc[0]))
-
