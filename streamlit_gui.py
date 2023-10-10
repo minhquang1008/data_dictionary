@@ -6,7 +6,7 @@ from searcher import Data, get_updated
 import datetime as dt
 
 
-sheet_list = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor', 'Fact - Trading', 'Fact - Outstanding', 'Fact - Price Board', 'Fact - Room', 'Fact - Margin Detail']
+sheet_list = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor', 'Fact - Trading', 'Fact - Price Board', 'Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail']
 information_table = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor']
 margin_table = ['Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail']
 trading_table = ['Fact - Trading', 'Fact - Price Board']
@@ -105,6 +105,7 @@ with st.sidebar:
         show_line=True,
         checkbox_strict=False,
         return_index=True)
+    st.write(clicked)
     if clicked != last_clicked:
         t1 = dt.datetime.now()
         with open('last_clicked.pkl', 'wb') as file:
