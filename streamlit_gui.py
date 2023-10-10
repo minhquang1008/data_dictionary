@@ -2,112 +2,23 @@ import streamlit as st
 import streamlit_antd_components as sac
 import pandas as pd
 import pickle
-from searcher import Data
+from searcher import Data, get_updated
 import datetime as dt
-import time
 
-returning_dictionary = {0: 'information',
-                     1: 'information/dim - branch',
-                     2: 'information/dim - branch/row_id',
-                     3: 'information/dim - branch/integration_id',
-                     4: 'information/dim - branch/datasource_id',
-                     5: 'information/dim - branch/branch_code',
-                     6: 'information/dim - branch/branch_name',
-                     7: 'information/dim - branch/region_id',
-                     8: 'information/dim - branch/status',
-                     9: 'information/dim - broker',
-                     10: 'information/dim - broker/row_id',
-                     11: 'information/dim - broker/integration_id',
-                     12: 'information/dim - broker/datasource_id',
-                     13: 'information/dim - broker/broker_code',
-                     14: 'information/dim - broker/broker_name',
-                     15: 'information/dim - broker/gender',
-                     16: 'information/dim - broker/birthday',
-                     17: 'information/dim - broker/region_id',
-                     18: 'information/dim - broker/nationality',
-                     19: 'information/dim - broker/create_date',
-                     20: 'information/dim - broker/modify_date',
-                     21: 'information/dim - company',
-                     22: 'information/dim - company/row_id',
-                     23: 'information/dim - company/integration_id',
-                     24: 'information/dim - company/datasource_id',
-                     25: 'information/dim - company/company_code',
-                     26: 'information/dim - company/company_name',
-                     27: 'information/dim - customer',
-                     28: 'information/dim - customer/Source ID',
-                     29: 'information/dim - customer/Sub Account',
-                     30: 'information/dim - customer/Customer Code',
-                     31: 'information/dim - customer/Customer Name',
-                     32: 'information/dim - customer/Birthday',
-                     33: 'information/dim - customer/Gender',
-                     34: 'information/dim - customer/Nationality',
-                     35: 'information/dim - customer/Region ID',
-                     36: 'information/dim - customer/#Count Customer',
-                     37: 'information/dim - customer/.Age',
-                     38: 'information/dim - territory',
-                     39: 'information/dim - territory/row_id',
-                     40: 'information/dim - territory/integration_id',
-                     41: 'information/dim - territory/flex_province',
-                     42: 'information/dim - territory/bravo_province',
-                     43: 'information/dim - territory/district_code',
-                     44: 'information/dim - territory/district_name',
-                     45: 'information/dim - territory/district_en',
-                     46: 'information/dim - territory/province_code',
-                     47: 'information/dim - territory/province_name',
-                     48: 'information/dim - territory/province_en',
-                     49: 'information/dim - vendor',
-                     50: 'information/dim - vendor/row_id',
-                     51: 'information/dim - vendor/integration_id',
-                     52: 'information/dim - vendor/customer_subcode',
-                     53: 'information/dim - vendor/customer_code',
-                     54: 'information/dim - vendor/customer_name',
-                     55: 'information/dim - vendor/birthday',
-                     56: 'information/dim - vendor/gender',
-                     57: 'information/dim - vendor/nationality',
-                     58: 'information/dim - vendor/province',
-                     59: 'information/dim - vendor/contract_number_normal',
-                     60: 'information/dim - vendor/contract_number_margin',
-                     64: 'Margin',
-                     67: 'Margin/fact - outstanding',
-                     68: 'Margin/fact - outstanding/Source ID',
-                     69: 'Margin/fact - outstanding/Date Key',
-                     70: 'Margin/fact - outstanding/Date Oustanding',
-                     71: 'Margin/fact - outstanding/Customer ID',
-                     72: 'Margin/fact - outstanding/Oustanding Principal',
-                     73: 'Margin/fact - outstanding/Oustanding Remain',
-                     74: 'Margin/fact - outstanding/Oustanding Overdue',
-                     75: 'Margin/fact - outstanding/Oustanding Paid',
-                     76: 'Margin/fact - outstanding/Interest OUT',
-                     77: 'Margin/fact - outstanding/Interest Due',
-                     78: 'Margin/fact - outstanding/Interest Overdue',
-                     79: 'Margin/fact - outstanding/Interest Overdue OUT',
-                     80: 'Margin/fact - outstanding/Interest Paid',
-                     81: 'Margin/fact - outstanding/Date Disbursement',
-                     82: 'Margin/fact - outstanding/Date Start Interest Paid',
-                     83: 'Margin/fact - outstanding/Date First Due',
-                     84: 'Margin/fact - outstanding/Date Last Due',
-                     85: 'Margin/fact - outstanding/Rate Due 1',
-                     86: 'Margin/fact - outstanding/Rate Due 2',
-                     87: 'Margin/fact - outstanding/Rate Overdue',
-                     88: 'Margin/fact - outstanding/Loan Name',
-                     89: 'Margin/fact - outstanding/Branch ID',
-                     90: 'Margin/fact - outstanding/.Interest Outs',
-                     91: 'Margin/fact - outstanding/.Interest Overdue',
-                     92: 'Margin/fact - outstanding/.Outs Overdue',
-                     93: 'Margin/fact - outstanding/.Outs Principal'
-                    }
-#st-emotion-cache
-# with open('returning_dictionary.pkl', 'wb') as file:
-#     pickle.dump(returning_dictionary, file)
 
-# with open('returning_dictionary.pkl', 'rb') as file:
-#     returning_dictionary = pickle.load(file)
-# https://i.pinimg.com/originals/60/a5/85/60a58511e5c70a418ac743f7df8134fa.gif
-# https://wallpapercave.com/uwp/uwp2493549.gif
-# https://i.ibb.co/DCb3nvR/crane.jpg
+sheet_list = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor', 'Fact - Trading', 'Fact - Outstanding', 'Fact - Price Board', 'Fact - Room', 'Fact - Margin Detail']
+information_table = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor']
+margin_table = ['Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail']
+trading_table = ['Fact - Trading', 'Fact - Price Board']
+
+# st-emotion-cache
+
+with open('returning_dictionary.pkl', 'rb') as file:
+    returning_dictionary = pickle.load(file)
+with open('last_update.pkl', 'rb') as file:
+    last_update = pickle.load(file)
+
 st.title('DATA DICTIONARY')
-with st.spinner('Wait for it...'):
-    time.sleep(2)
 st.markdown('''
 <style>
 [data-testid="stAppViewContainer"] {
@@ -126,7 +37,7 @@ border-style: double;
 border-color: #34693a;
 border-radius: 20px;
 }
-[class="block-container st-emotion-cache-1y4p8pa ea3mdgi4"] {
+[class="block-container css-1y4p8pa ea3mdgi4"] {
 background-color: #FFFFFF;
 padding-top: 5px;
 margin-top: 0px;
@@ -135,7 +46,7 @@ background-repeat: no-repeat;
 border-style: double;
 border-color: #34693a;
 border-radius: 20px;
-line-height: 1.0;
+line-height: 1.2;
 }
 [data-testid='stHeader'] {
 background-color: #FFFFFF;
@@ -160,34 +71,28 @@ if text_search != last_search:
 else:
     t2 = dt.datetime(1993, 4, 16)
 with st.sidebar:
-
     st.image("logo.png", width=200)
     with open('last_clicked.pkl', 'rb') as file:
         last_clicked = pickle.load(file)
     clicked = sac.tree(items=[
         sac.TreeItem('Information', tooltip='item1 tooltip', children=[
-            sac.TreeItem('Branch', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(2, 9, 1)]]),
-            sac.TreeItem('Broker', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(10, 21, 1)]]),
-            sac.TreeItem('Company', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(22, 27, 1)]]),
-            sac.TreeItem('Customer', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(28, 38, 1)]]),
-            sac.TreeItem('Territory', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(39, 49, 1)]]),
-            sac.TreeItem('Vendor', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(50, 61, 1)]])
+            sac.TreeItem(i.split('-')[-1].strip(), icon='table', children=[sac.TreeItem(f'{k}', icon='arrow-return-right') for k in
+                                     [q.split('/')[-1] for q in returning_dictionary.values()
+                                      if len(q.split('/')) == 3 and q.split('/')[1] == i]])
+            for i in information_table
         ]),
-        sac.TreeItem('Trading', tooltip='item2 tooltip', disabled=True, children=[
-            sac.TreeItem('Trading', disabled=True, icon='table'),
-            sac.TreeItem('Price Board',  disabled=True, icon='table')
+        sac.TreeItem('Trading', tooltip='item2 tooltip', children=[
+            sac.TreeItem(i.split('-')[-1].strip(), icon='table', children=[sac.TreeItem(f'{k}', icon='arrow-return-right') for k in
+                                     [q.split('/')[-1] for q in returning_dictionary.values()
+                                      if len(q.split('/')) == 3 and q.split('/')[1] == i]])
+            for i in trading_table
         ]),
-        sac.TreeItem('Margin', tooltip='item3 tooltip', children=[
-            sac.TreeItem('Room', disabled=True, icon='table'),
-            sac.TreeItem('Margin Detail',  disabled=True, icon='table'),
-            sac.TreeItem('Outstanding', icon='table', children=[sac.TreeItem(f'{i}', icon='arrow-return-right') for i in
-                                        [returning_dictionary.get(k).split('/')[-1] for k in range(68, 94, 1)]])
+        sac.TreeItem('Margin', tooltip='item3 tooltip',  children=[
+            sac.TreeItem(i.split('-')[-1].strip(), icon='table',
+                         children=[sac.TreeItem(f'{k}', icon='arrow-return-right') for k in
+                                   [q.split('/')[-1] for q in returning_dictionary.values()
+                                    if len(q.split('/')) == 3 and q.split('/')[1] == i]])
+            for i in margin_table
         ]),
     ],  label='Table',
         index=0,
@@ -206,6 +111,15 @@ with st.sidebar:
             pickle.dump(clicked, file)
     else:
         t1 = dt.datetime(1993, 4, 16)
+    if st.button("Update"):
+        with st.spinner('Wait for it...'):
+            returning_dictionary = get_updated(sheet_list, information_table, margin_table, trading_table)
+            with open('returning_dictionary.pkl', 'wb') as file:
+                pickle.dump(returning_dictionary, file)
+            last_update = dt.datetime.now()
+            with open('last_update.pkl', 'wb') as file:
+                pickle.dump(last_update, file)
+
 # ----------------------------------------------------------------------------
 data = Data()
 if clicked and text_search and t1 > t2:
@@ -227,4 +141,5 @@ if len(the_path.split('/')) == 3:
     if str(df['Formula'].iloc[0]) != 'nan':
         st.write('### Formula')
         st.write(str(df['Formula'].iloc[0]))
-
+st.divider()
+st.success(f'last update: {last_update.strftime("%m/%d/%Y, %H:%M:%S")}')
