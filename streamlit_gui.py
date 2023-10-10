@@ -105,7 +105,6 @@ with st.sidebar:
         show_line=True,
         checkbox_strict=False,
         return_index=True)
-    st.write(clicked)
     if clicked != last_clicked:
         t1 = dt.datetime.now()
         with open('last_clicked.pkl', 'wb') as file:
