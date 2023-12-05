@@ -37,7 +37,7 @@ border-style: double;
 border-color: #34693a;
 border-radius: 20px;
 }
-[class="block-container st-emotion-cache-1y4p8pa ea3mdgi4"] {
+[class="block-container st-emotion-cache-1y4p8pa ea3mdgi2"] {
 background-color: #FFFFFF;
 padding-top: 5px;
 margin-top: 0px;
@@ -142,3 +142,5 @@ if len(the_path.split('/')) == 3:
         st.write(str(df['Formula'].iloc[0]))
 st.divider()
 st.success(f'last update: {last_update.strftime("%m/%d/%Y, %H:%M:%S")}')
+
+
