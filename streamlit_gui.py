@@ -61,7 +61,8 @@ background-repeat: no-repeat;
 }
 </style>
 ''', unsafe_allow_html=True)
-if os.environ['userdomain'] == 'PHS':
+
+if os.environ['USERDOMAIN'] == 'PHS':
     df_search = pd.DataFrame(list(returning_dictionary.items()), columns=['index', 'path'])
     text_search = st.selectbox("Search column's name", df_search['path'])
     if text_search != last_search:
