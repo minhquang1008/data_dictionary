@@ -5,8 +5,27 @@ import pickle
 from searcher import Data, get_updated
 import datetime as dt
 import streamlit_authenticator as stauth
+from streamlit import runtime
+from streamlit.runtime.scriptrunner import get_script_run_ctx
 import yaml
 from yaml.loader import SafeLoader
+
+
+def get_remote_ip() -> str:
+    """Get remote ip."""
+
+    try:
+        ctx = get_script_run_ctx()
+        if ctx is None:
+            return None
+
+        session_info = runtime.get_instance().get_client(ctx.session_id)
+        if session_info is None:
+            return None
+    except Exception as e:
+        return None
+
+    return session_info.request.remote_ip
 sheet_list = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor', 'Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail', 'Fact - Trading', 'Fact - Price Board',]
 information_table = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor']
 margin_table = ['Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail']
@@ -124,6 +143,7 @@ if authentication_status:
         else:
             t1 = dt.datetime(1993, 4, 16)
         st.write(f'Welcome *{name}*')
+        st.write(f"The remote ip is {get_remote_ip()}")
         if st.button("Update"):
             with st.spinner('Wait for it...'):
                 returning_dictionary = get_updated(sheet_list, information_table, margin_table, trading_table)
