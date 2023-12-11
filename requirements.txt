@@ -3,4 +3,4 @@ pandas
 streamlit_antd_components
 openpyxl
 datetime
-win32api
+pywin32
