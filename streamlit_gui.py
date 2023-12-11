@@ -4,7 +4,7 @@ import pandas as pd
 import pickle
 from searcher import Data, get_updated
 import datetime as dt
-import win32api
+import socket
 sheet_list = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor', 'Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail', 'Fact - Trading', 'Fact - Price Board',]
 information_table = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor']
 margin_table = ['Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail']
@@ -62,7 +62,7 @@ background-repeat: no-repeat;
 </style>
 ''', unsafe_allow_html=True)
 
-if win32api.GetUserNameEx(win32api.NameSamCompatible).split("\\")[0] == 'PHS':
+if socket.getfqdn().split('.')[1] == 'phs':
     df_search = pd.DataFrame(list(returning_dictionary.items()), columns=['index', 'path'])
     text_search = st.selectbox("Search column's name", df_search['path'])
     if text_search != last_search:
