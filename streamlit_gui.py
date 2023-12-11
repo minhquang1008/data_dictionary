@@ -61,7 +61,7 @@ background-repeat: no-repeat;
 }
 </style>
 ''', unsafe_allow_html=True)
-
+st.write(f'{socket.getfqdn()}')
 if socket.getfqdn().split('.')[1] == 'phs':
     df_search = pd.DataFrame(list(returning_dictionary.items()), columns=['index', 'path'])
     text_search = st.selectbox("Search column's name", df_search['path'])
