@@ -4,8 +4,6 @@ import pandas as pd
 import pickle
 from searcher import Data, get_updated
 import datetime as dt
-from streamlit import runtime
-from streamlit.runtime.scriptrunner import get_script_run_ctx
 from streamlit_javascript import st_javascript
 
 
@@ -27,22 +25,6 @@ def client_ip():
     except:
         pass
 
-
-def get_remote_ip() -> str:
-    """Get remote ip."""
-
-    try:
-        ctx = get_script_run_ctx()
-        if ctx is None:
-            return None
-
-        session_info = runtime.get_instance().get_client(ctx.session_id)
-        if session_info is None:
-            return None
-    except Exception as e:
-        return None
-
-    return session_info.request.remote_ip
 sheet_list = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor', 'Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail', 'Fact - Trading', 'Fact - Price Board',]
 information_table = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor']
 margin_table = ['Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail']
@@ -96,7 +78,7 @@ background-repeat: no-repeat;
 }
 </style>
 ''', unsafe_allow_html=True)
-if str(client_ip()) == '116.118.113.140':
+if client_ip() == '116.118.113.140':
     df_search = pd.DataFrame(list(returning_dictionary.items()), columns=['index', 'path'])
     text_search = st.selectbox("Search column's name", df_search['path'])
     st.title('DATA DICTIONARY')
