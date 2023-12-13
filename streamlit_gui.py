@@ -78,7 +78,8 @@ background-repeat: no-repeat;
 }
 </style>
 ''', unsafe_allow_html=True)
-if client_ip() == '116.118.113.140':
+IP = client_ip()
+if IP == '116.118.113.140':
     df_search = pd.DataFrame(list(returning_dictionary.items()), columns=['index', 'path'])
     text_search = st.selectbox("Search column's name", df_search['path'])
     st.title('DATA DICTIONARY')
@@ -130,7 +131,7 @@ if client_ip() == '116.118.113.140':
                 pickle.dump(clicked, file)
         else:
             t1 = dt.datetime(1993, 4, 16)
-        st.write(f"The client ip is {client_ip()}")
+        st.write(f"The client ip is {IP}")
         if st.button("Update"):
             with st.spinner('Wait for it...'):
                 returning_dictionary = get_updated(sheet_list, information_table, margin_table, trading_table)
