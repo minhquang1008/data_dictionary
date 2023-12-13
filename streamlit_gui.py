@@ -166,6 +166,7 @@ if IP == '116.118.113.140':
     st.divider()
     st.success(f'last update: {last_update.strftime("%m/%d/%Y, %H:%M:%S")}')
 else:
+    st.write(f"The client ip is {IP}")
     st.write("### Access Denied! You are not allowed to access this page")
 
 
