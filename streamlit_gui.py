@@ -96,7 +96,7 @@ background-repeat: no-repeat;
 }
 </style>
 ''', unsafe_allow_html=True)
-if client_ip() == '116.118.113.140':
+if str(client_ip()) == '116.118.113.140':
     df_search = pd.DataFrame(list(returning_dictionary.items()), columns=['index', 'path'])
     text_search = st.selectbox("Search column's name", df_search['path'])
     st.title('DATA DICTIONARY')
@@ -182,7 +182,8 @@ if client_ip() == '116.118.113.140':
     st.divider()
     st.success(f'last update: {last_update.strftime("%m/%d/%Y, %H:%M:%S")}')
 else:
-    st.write("### Access Denied You are not allowed to access this page")
+    st.write("### Access Denied! You are not allowed to access this page")
+
 
 
 
