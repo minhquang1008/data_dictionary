@@ -23,7 +23,7 @@ def client_ip():
             return result['ip']
 
     except:
-        pass
+        client_ip()
 
 sheet_list = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor', 'Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail', 'Fact - Trading', 'Fact - Price Board',]
 information_table = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor']
