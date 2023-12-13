@@ -80,7 +80,7 @@ background-repeat: no-repeat;
 </style>
 ''', unsafe_allow_html=True)
 IP = client_ip()
-if IP == '116.118.113.140':
+if IP == '116.118.113.140' or IP == '115.78.11.116':
     df_search = pd.DataFrame(list(returning_dictionary.items()), columns=['index', 'path'])
     text_search = st.selectbox("Search column's name", df_search['path'])
     st.title('DATA DICTIONARY')
@@ -165,8 +165,9 @@ if IP == '116.118.113.140':
             st.write(str(df['Formula'].iloc[0]))
     st.divider()
     st.success(f'last update: {last_update.strftime("%m/%d/%Y, %H:%M:%S")}')
+elif IP is None:
+    st.write("### Wait for it")
 else:
-    st.write(f"The client ip is {IP}")
     st.write("### Access Denied! You are not allowed to access this page")
 
 
