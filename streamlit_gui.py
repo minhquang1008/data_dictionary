@@ -19,11 +19,12 @@ def client_ip():
     try:
         result = st_javascript(script)
 
-        if isinstance(result, dict) and 'ip' in result:
+        if isinstance(result, dict) and 'ip' in result and len(result['ip']) != 0:
             return result['ip']
-
+        else:
+            client_ip()
     except:
-        client_ip()
+        pass
 
 sheet_list = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor', 'Fact - Outstanding', 'Fact - Room', 'Fact - Margin Detail', 'Fact - Trading', 'Fact - Price Board',]
 information_table = ['Dim - Branch', 'Dim - Broker', 'Dim - Company', 'Dim - Customer', 'Dim - Territory', 'Dim - Vendor']
