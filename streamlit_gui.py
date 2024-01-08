@@ -159,11 +159,11 @@ if IP == '116.118.113.140' or IP == '115.78.11.116':
         the_path = returning_dictionary.get(clicked[0])
     else:
         the_path = text_search
-    st.text(the_path.title())
+    st.text(the_path.upper())
     if len(the_path.split('/')) == 3:
-        data.table = the_path.split('/')[1].title()
+        data.table = the_path.split('/')[1].upper()
         df = data.getData(the_path.split('/')[-1])
-        st.write(f'''## {the_path.split('/')[-1].title()}''')
+        st.write(f'''## {the_path.split('/')[-1].upper()}''')
         st.write('ARTICLE - ' + str(df['ARTICLE'].iloc[0].strftime("%d/%m/%Y")))
         if str(df['DESCRIPTION'].iloc[0]) != 'nan':
             st.write(str(df['DESCRIPTION'].iloc[0]))
