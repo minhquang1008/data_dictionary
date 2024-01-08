@@ -146,7 +146,7 @@ if IP == '116.118.113.140' or IP == '115.78.11.116':
         st.write(f"The client ip is {IP}")
         if st.button("Update"):
             with st.spinner('Wait for it...'):
-                returning_dictionary = get_updated(sheet_list, company_table, customer_table, margin_table, trading_table)
+                returning_dictionary = get_updated(sheet_list, company_table, margin_table, trading_table, customer_table)
                 with open('returning_dictionary.pkl', 'wb') as file:
                     pickle.dump(returning_dictionary, file)
                 last_update = dt.datetime.now()
